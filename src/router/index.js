@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
-import Instargram from "@/views/Instargram.vue";
+import SearchStores from "@/views/SearchStores.vue";
 
 import Member from "@/views/Member.vue";
 import MemberLogin from "@/components/user/MemberLogin.vue";
@@ -46,9 +46,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/instargram",
-    name: "Instargram",
-    component: Instargram,
+    path: "/searchStores",
+    name: "SearchStores",
+    component: SearchStores,
   },
   {
     path: "/user",

@@ -4,7 +4,7 @@
       <b-navbar-brand href="#">
         <router-link to="/">
           <img
-            src="@/assets/ssafy_logo.png"
+            src="@/assets/apato.png"
             class="d-inline-block align-middle"
             width="90px"
             alt="Kitten"
@@ -28,9 +28,9 @@
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'Instargram' }" class="link"
-              ><b-icon icon="instagram" font-scale="1"></b-icon>
-              인별그램</router-link
+            ><router-link :to="{ name: 'SearchStores' }" class="link"
+              ><b-icon icon="search" font-scale="1"></b-icon>
+              아파트 주변 상권 검색하기</router-link
             ></b-nav-item
           >
           <b-nav-item href="#"
