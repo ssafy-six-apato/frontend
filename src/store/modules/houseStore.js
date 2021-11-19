@@ -41,7 +41,7 @@ const houseStore = {
     getSido: ({ commit }) => {
       sidoList(
         ({ data }) => {
-          // console.log(data);
+          console.log(data);
           commit("SET_SIDO_LIST", data);
         },
         (error) => {
