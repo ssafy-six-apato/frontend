@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <button @click="test">바뀐 값 보기</button>
+    <b-button id="button" @click="test">바뀐 값 보기</b-button>
     <b-container v-if="storeList && storeList.length != 0" class="bv-example-row mt-3">
       <div class="mb-2">
         <b-form-checkbox v-model="stickyHeader" inline>줄여서 보기</b-form-checkbox>
@@ -60,7 +60,10 @@ export default {
 </script>
 
 <style scoped>
+#button{
+  margin-left: 8rem;
+}
 #container{
-  margin-left: 20rem;
+  margin-left: 8rem;
 }
 </style>

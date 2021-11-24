@@ -34,9 +34,15 @@
           </b-container>
         </b-jumbotron>
       </b-col>
-      <stores></stores>
-      <kakao-map></kakao-map>
-      <b-col></b-col>
+
+      <b-row>
+        <b-col cols="6" align="left">
+          <stores />
+        </b-col>
+        <b-col cols="6">
+          <kakao-map />
+        </b-col>
+      </b-row>
     </b-row>
   </b-container>
 </template>

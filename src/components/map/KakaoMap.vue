@@ -1,7 +1,8 @@
 <template>
   <div id="map-loc">
     <div id="map-location">
-      <button @click="displayMarker(markerPositions1)">마커 찍어서 보기</button>
+      <b-button @click="displayMarker(markerPositions1)">마커 찍어서 보기</b-button>
+      <br/>
       <div id="map">
       </div>
     </div>
@@ -89,7 +90,6 @@ export default {
 #map {
   width: 500px;
   height: 500px;
-  margin-left: 17rem;
 }
 
 .button-group {
