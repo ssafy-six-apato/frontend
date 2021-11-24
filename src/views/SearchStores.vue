@@ -18,12 +18,14 @@
                 <b-input-group >
                   <template #prepend>
                   </template>
-                  <select @click="getGeo" id="select-option" v-model="selectedOption">
-                    <option value="">옵션을 고르세요</option>
-                    <option value="cafe">카페</option>
-                    <option value="food">음식점</option>
-                    <option value="store">상점</option>
-                  </select>
+<!--                  <select @click="getGeo" id="select-option" v-model="selectedOption">-->
+<!--                    <option value="whole">전체</option>-->
+<!--                    <option value="cafe">카페</option>-->
+<!--                    <option value="food">음식</option>-->
+<!--                    <option value="sleep">숙박</option>-->
+<!--                    <option value="service">생활서비스</option>-->
+<!--                    <option value="edu">학문/교육</option>-->
+<!--                  </select>-->
                   <b-form-input v-model="address" ></b-form-input>
                   <b-button @click="getGeo"> 결과 검색하기</b-button>
                 </b-input-group>
@@ -53,7 +55,7 @@ export default {
   data(){
     return{
       address : "",
-      selectedOption : ""
+      selectedOption : "전체"
     }
   },
   computed:{

@@ -45,14 +45,13 @@
 </template>
 
 <script>
-//import { modifyUserinfo } from "@/api/member";
-import { mapState } from "vuex";
-
+import { mapState, mapActions } from "vuex";
+import { modifyUserinfo } from "@/api/member";
 const memberStore = "memberStore";
 export default {
   name: "MemberUpdate",
   computed: {
-    ...mapState(memberStore, ["userInfo"]),
+    ...mapState(memberStore, ["userInfo", "isLogin", "isLoginError"]),
   },
   data() {
     return {
@@ -64,9 +63,38 @@ export default {
       },
     };
   },
+  created() {
+    this.user.userid = this.userInfo.userid;
+    this.user.username = this.userInfo.username;
+    this.user.userpwd = this.userInfo.userpwd;
+    this.user.email = this.userInfo.email;
+  },
+
   methods: {
-    moveList() {
-      this.$router.push({ name: "MyPage" });
+    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
+    update() {
+      modifyUserinfo(
+          {
+            userid: this.user.userid,
+            username: this.user.username,
+            userpwd: this.user.userpwd,
+            email: this.user.email,
+          },
+          ({ data }) => {
+            let msg = "수정 처리시 문제가 발생했습니다.";
+            if (data === "success") {
+              msg = "수정이 완료되었습니다.";
+            }
+            this.userInfo.username = this.user.username;
+            this.userInfo.email = this.user.email;
+            alert(msg);
+            // 현재 route를 /list로 변경.
+            this.$router.push({ name: "MyPage" });
+          },
+          (error) => {
+            console.log(error);
+          }
+      );
     },
   },
 };

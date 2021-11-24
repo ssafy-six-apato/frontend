@@ -5,7 +5,8 @@ const storesStore = {
     state: {
         searchInfo : {lat : "", lng : ""},
         houseInfo : [],
-        storeList : []
+        storeList : [],
+        selectedOption : ""
     },
     getters: {
 
@@ -15,12 +16,9 @@ const storesStore = {
             state.searchInfo.lat = datas.x
             state.searchInfo.lng = datas.y
 
-            console.log(state.searchInfo.lat)
-            console.log(state.searchInfo.lng)
         },
         SET_WHOLE_STORES:(state,datas)=>{
             state.houseInfo = []
-            console.log(datas)
             datas.forEach(data=>{
                 state.houseInfo.push(data.trarNo)
             })
