@@ -5,41 +5,35 @@
     </h3>
     <b-row>
       <b-col></b-col>
-      <b-col cols="10">
+      <b-col cols="10" id="jumps">
         <b-jumbotron
           bg-variant="muted"
           text-variant="dark"
           border-variant="dark"
         >
-          <template #header>상권 입력</template>
-
-          <hr class="my-4" />
-
+          <template #header>상권 검색</template>
           <b-container class="bv-example-row bv-example-row-flex-cols">
             <b-row>
-              <b-col align-h="center">
+              <b-col>
                 <b-input-group >
                   <template #prepend>
-                    <b-dropdown
-                        v-model="test"
-                        :options="menus"
-                        text="카테고리 선택" variant="info" class="w-25" >
-                      <b-dropdown-item>카페</b-dropdown-item>
-                      <b-dropdown-item>음식점</b-dropdown-item>
-                    </b-dropdown>
                   </template>
-                  <b-form-input ></b-form-input>
+                  <select @click="getGeo" id="select-option" v-model="selectedOption">
+                    <option value="">옵션을 고르세요</option>
+                    <option value="cafe">카페</option>
+                    <option value="food">음식점</option>
+                    <option value="store">상점</option>
+                  </select>
+                  <b-form-input v-model="address" ></b-form-input>
+                  <b-button @click="getGeo"> 결과 검색하기</b-button>
                 </b-input-group>
               </b-col>
             </b-row>
           </b-container>
-
-
-          <map name="">안녕</map>
         </b-jumbotron>
       </b-col>
-      <kakao-map align-w="center"></kakao-map>
-
+      <stores></stores>
+      <kakao-map></kakao-map>
       <b-col></b-col>
     </b-row>
   </b-container>
@@ -47,22 +41,46 @@
 
 <script>
 import KakaoMap from "@/components/map/KakaoMap"
+import Stores from "@/components/map/Stores"
+import {mapState} from "vuex";
 
 export default {
   name: "SearchStores",
   components:{
-    KakaoMap
+    KakaoMap,
+    Stores
   },
   data(){
     return{
-      test : "",
-      menus : []
+      address : "",
+      selectedOption : ""
     }
+  },
+  computed:{
+    ...mapState("storesStore",["searchInfo"]),
+  },
+  methods:{
+     getGeo(){
+       this.$store.dispatch("storesStore/getGeoInfo",this.address) // 위도 경도 설정
+       // const params = {lat : this.searchInfo.lat , lng : this.searchInfo.lng}
+       // this.$store.dispatch("storesStore/getWholeStore",params)
+       // this.getWholeStore() // 위도 경도 설정에 따른 상점목록 갱신
+    },
   }
+
 };
 </script>
 
 <style scoped>
+
+#jumps{
+  margin-right: 5rem;
+}
+
+#select-option{
+  margin-right: 0.5rem;
+}
+
 .underline-green {
   display: inline-block;
   background: linear-gradient(

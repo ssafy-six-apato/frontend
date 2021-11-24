@@ -1,44 +1,53 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-steelblue"><b-icon icon="house"></b-icon> Apato</h3>
+  <b-container className="bv-example-row mt-3">
     <b-row>
-      <b-col></b-col>
-      <b-col cols="10">
-        <b-jumbotron
-          bg-variant="muted"
-          text-variant="dark"
-          border-variant="dark"
-        >
-          <template #header>Apato Home</template>
-
-          <template #lead>
-          </template>
-
-          <hr class="my-4" />
-
-        </b-jumbotron>
-      </b-col>
-      <b-col></b-col>
+      <b-alert show><h3>오늘의 부동산 이슈</h3></b-alert>
+    </b-row>
+    <b-row>
+      <b-table-simple>
+        <tbody>
+        <!-- 하위 component인 ListRow에 데이터 전달(props) -->
+        <news-list
+            v-for="(newsTitle, index) in newsTitles"
+            :key="index"
+            v-bind="newsTitle"
+        />
+        </tbody>
+      </b-table-simple>
+      <!-- <b-col v-else class="text-center">도서 목록이 없습니다.</b-col> -->
     </b-row>
   </b-container>
 </template>
 
 <script>
+import NewsList from "@/components/home/NewsList";
+import {listNews} from "@/api/news.js";
+
 export default {
   name: "Main",
-  props: {
-    msg: String,
+  components: {
+    NewsList,
+  },
+  data() {
+    return {
+      newsTitles: [],
+    };
+  },
+  created() {
+    let param = {
+      key: null,
+    };
+    listNews(
+        param,
+        (response) => {
+          //console.log(response.data);
+          this.newsTitles = response.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+    );
   },
 };
 </script>
-
-<style scoped>
-.underline-steelblue {
-  display: inline-block;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 70%,
-    rgba(72, 190, 233, 0.3) 30%
-  );
-}
-</style>
+<style scope></style>
