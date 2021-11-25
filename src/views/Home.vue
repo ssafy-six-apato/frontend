@@ -1,9 +1,12 @@
 <template>
-  <b-container className="bv-example-row mt-3">
-    <b-row>
-      <b-alert show><h3>오늘의 부동산 이슈</h3></b-alert>
+  <b-container className="bv-example-row mt-3" class="">
+    <b-row >
+      <b-alert show variant="light" class="justify-content-center"></b-alert>
     </b-row>
-    <b-row>
+    <b-row >
+      <b-alert show variant="light" class="justify-content-center"><h3>Today's News</h3></b-alert>
+    </b-row>
+    <b-row >
       <b-table-simple>
         <tbody>
         <!-- 하위 component인 ListRow에 데이터 전달(props) -->
@@ -50,4 +53,5 @@ export default {
   },
 };
 </script>
-<style scope></style>
+<style scope>
+</style>

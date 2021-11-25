@@ -6,6 +6,10 @@ function listArticle(param, success, fail) {
   api.get(`/board`, { params: param }).then(success).catch(fail);
 }
 
+function hottestArticle(success, fail) {
+  api.get(`/board/hottest`).then(success).catch(fail);
+}
+
 function writeArticle(article, success, fail) {
   api.post(`/board`, JSON.stringify(article)).then(success).catch(fail);
 }
@@ -22,4 +26,4 @@ function deleteArticle(articleno, success, fail) {
   api.delete(`/board/${articleno}`).then(success).catch(fail);
 }
 
-export { listArticle, writeArticle, getArticle, modifyArticle, deleteArticle };
+export { hottestArticle,listArticle, writeArticle, getArticle, modifyArticle, deleteArticle };

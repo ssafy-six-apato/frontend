@@ -7,11 +7,8 @@
     </b-row>
     <b-row class="mb-1">
       <b-col class="text-right">
-        <b-button variant="outline-primary" @click="moveWrite()"
-          >글쓰기</b-button
-        >
-        <b-button variant="outline-primary" @click="moveHottest()">
-          가장 핫한 게시글 보기
+        <b-button variant="outline-primary" @click="moveList()">
+          원래 게시글 보기
         </b-button>
       </b-col>
     </b-row>
@@ -28,12 +25,12 @@
             </b-tr>
           </b-thead>
           <tbody>
-            <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-            <board-list-row
+          <!-- 하위 component인 ListRow에 데이터 전달(props) -->
+          <board-list-row
               v-for="(article, index) in articles"
               :key="index"
               v-bind="article"
-            />
+          />
           </tbody>
         </b-table-simple>
       </b-col>
@@ -44,7 +41,7 @@
 
 <script>
 import BoardListRow from "@/components/board/child/BoardListRow";
-import { listArticle } from "@/api/board.js";
+import {hottestArticle} from "@/api/board";
 
 export default {
   name: "BoardList",
@@ -57,30 +54,20 @@ export default {
     };
   },
   created() {
-    let param = {
-      pg: 1,
-      spp: 20,
-      key: null,
-      word: null,
-    };
-    listArticle(
-      param,
-      (response) => {
-        this.articles = response.data;
-      },
-      (error) => {
-        console.log(error);
-      }
+    hottestArticle(
+        (response) => {
+          // console.log(response.data.articleno)
+          this.articles.push(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
     );
   },
   methods: {
-    moveWrite() {
-      this.$router.push({ name: "BoardWrite" });
+    moveList() {
+      this.$router.push({ name: "Board" });
     },
-    moveHottest(){
-      this.$router.push({ name: "BoardHottest" });
-    },
-
   },
 };
 </script>

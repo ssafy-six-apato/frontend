@@ -10,10 +10,14 @@ import MemberMyPage from "@/components/user/MemberMyPage.vue";
 import MemberUpdate from "@/components/user/MemberUpdate.vue";
 
 import Board from "@/views/Board.vue";
-import BoardList from "@/components/board/BoardList.vue";
+// import BoardList from "@/components/board/BoardList.vue";
 import BoardWrite from "@/components/board/BoardWrite.vue";
 import BoardView from "@/components/board/BoardView.vue";
 import BoardUpdate from "@/components/board/BoardUpdate.vue";
+import BoardHottest from "@/components/board/BoardHottest";
+
+import List from "@/components/board/List.vue";
+import BoardLink from "@/components/board/BoardLink.vue";
 
 import House from "@/views/House.vue";
 
@@ -81,35 +85,47 @@ const routes = [
     ],
   },
   {
+    //BoardHottest
     path: "/board",
     name: "Board",
     component: Board,
-    redirect: "/board/list",
+    //redirect: "/board/list",
     children: [
       {
         path: "list",
-        name: "BoardList",
-        component: BoardList,
+        name: "List",
+        component: List,
       },
       {
-        path: "write",
-        name: "BoardWrite",
-        beforeEnter: onlyAuthUser,
-        component: BoardWrite,
+        path: "boardlink" ,
+        name: "BoardLink",
+        component: BoardLink,
       },
-      {
-        path: "detail/:articleno",
-        name: "BoardView",
-        beforeEnter: onlyAuthUser,
-        component: BoardView,
-      },
-      {
-        path: "update/:articleno",
-        name: "BoardUpdate",
-        beforeEnter: onlyAuthUser,
-        component: BoardUpdate,
-      },
+
     ],
+  },
+  {
+    path: "/board/BoardHottest",
+    name: "BoardHottest",
+    component: BoardHottest,
+  },
+  {
+    path: "/board/write",
+    name: "BoardWrite",
+    beforeEnter: onlyAuthUser,
+    component: BoardWrite,
+  },
+  {
+    path: "/board/detail/:articleno",
+    name: "BoardView",
+    beforeEnter: onlyAuthUser,
+    component: BoardView,
+  },
+  {
+    path: "/board/update/:articleno",
+    name: "BoardUpdate",
+    beforeEnter: onlyAuthUser,
+    component: BoardUpdate,
   },
   {
     path: "/house",

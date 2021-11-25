@@ -1,14 +1,10 @@
 <template>
   <b-container v-if="house" class="bv-example-row">
-    <b-row>
-      <b-col
-        ><h3>{{ house.아파트 }}</h3></b-col
-      >
-    </b-row>
     <b-row class="mb-2 mt-1">
-      <b-col
-        ><b-img :src="require('@/assets/apt.png')" fluid-grow></b-img
-      ></b-col>
+      <b-col>
+        <b-img :src="require(`@/assets/apts/${this.randomNum}.jpeg`)" fluid-grow></b-img>
+<!--        <kakao-map-house></kakao-map-house>-->
+      </b-col>
     </b-row>
     <b-row>
       <b-col>
@@ -49,16 +45,23 @@
 
 <script>
 import { mapState } from "vuex";
-
-const houseStore = "houseStore";
+// import KakaoMapHouse from "@/components/map/KakaoMapHouse";
 
 export default {
   name: "HouseDetail",
+  components:{
+    // KakaoMapHouse
+  },
   computed: {
-    ...mapState(houseStore, ["house"]),
+    ...mapState("houseStore", ["house","randomNum"]),
     // house() {
     //   return this.$store.state.house;
     // },
+  },
+  methods:{
+    test(){
+      console.log(this.randomNum)
+    }
   },
   filters: {
     price(value) {

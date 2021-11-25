@@ -11,25 +11,25 @@
       </b-col>
       <b-col class="text-right">
         <b-button
-          variant="outline-info"
-          size="sm"
-          @click="moveModifyArticle"
-          class="mr-2"
-          >글수정</b-button
+            variant="outline-info"
+            size="sm"
+            @click="moveModifyArticle"
+            class="mr-2"
+        >글수정</b-button
         >
         <b-button variant="outline-danger" size="sm" @click="removeArticle"
-          >글삭제</b-button
+        >글삭제</b-button
         >
       </b-col>
     </b-row>
     <b-row class="mb-1">
       <b-col>
         <b-card
-          :header-html="`<h3>${article.articleno}.
+            :header-html="`<h3>${article.articleno}.
           ${article.subject} [${article.hit}]</h3><div><h6>${article.userid}</div><div>${article.regtime}</h6></div>`"
-          class="mb-2"
-          border-variant="dark"
-          no-body
+            class="mb-2"
+            border-variant="dark"
+            no-body
         >
           <b-card-body class="text-left">
             <div v-html="message"></div>
@@ -64,18 +64,18 @@ export default {
   },
   created() {
     getArticle(
-      this.$route.params.articleno,
-      (response) => {
-        this.article = response.data;
-      },
-      (error) => {
-        console.log("삭제시 에러발생!!", error);
-      }
+        this.$route.params.articleno,
+        (response) => {
+          this.article = response.data;
+        },
+        (error) => {
+          console.log("삭제시 에러발생!!", error);
+        }
     );
   },
   methods: {
     listArticle() {
-      this.$router.push({ name: "BoardList" });
+      this.$router.push({ name: "List" });
     },
     moveModifyArticle() {
       this.$router.replace({
@@ -87,7 +87,7 @@ export default {
     removeArticle() {
       if (confirm("정말로 삭제?")) {
         deleteArticle(this.article.articleno, () => {
-          this.$router.push({ name: "BoardList" });
+          this.$router.push({ name: "List" });
         });
       }
     },

@@ -1,7 +1,7 @@
 <template>
   <b-tr>
     <b-td>
-      <a v-bind:href="url">{{ newstitle }}</a>
+      <a class="link2" v-bind:href="url">{{ newstitle }}</a>
     </b-td>
   </b-tr>
 </template>
@@ -15,4 +15,7 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+.link2 {
+  color: #4c4c4c;
+}</style>
